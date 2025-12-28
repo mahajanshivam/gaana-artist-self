@@ -19,14 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
-include(":build-logic")
-
 rootProject.name = "GaanaArtistSelf"
 include(":app")
  
