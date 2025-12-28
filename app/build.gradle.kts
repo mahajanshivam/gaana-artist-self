@@ -5,14 +5,9 @@ plugins {
 
 android {
     namespace = "com.shivam.gaanaartist"
-    compileSdk {
-        version = release(36)
-    }
 
     defaultConfig {
         applicationId = "com.shivam.gaanaartist"
-        minSdk = 24
-        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
 
@@ -28,13 +23,6 @@ android {
             )
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-//    kotlinOptions {
-//        jvmTarget = "11"
-//    }
     buildFeatures {
         compose = true
     }
