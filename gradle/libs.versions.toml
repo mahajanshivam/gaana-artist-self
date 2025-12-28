@@ -39,6 +39,7 @@ compose-gradlePlugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
@@ -48,4 +49,5 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 # Plugins defined by this project
 gaanaartist-android-application = { id = "gaanaartist.android.application" }
 gaanaartist-android-application-compose = { id = "gaanaartist.android.application.compose" }
-
+gaanaartist-jvm-library = { id = "gaanaartist.jvm.library" }
+gaanaartist-android-lint = { id = "gaanaartist.android.lint" }

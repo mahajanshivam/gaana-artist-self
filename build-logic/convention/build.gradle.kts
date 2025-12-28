@@ -47,12 +47,22 @@ tasks {
 gradlePlugin {
     plugins {
         register("androidApplication") {
-            id = "gaanaartist.android.application"
+            id = libs.plugins.gaanaartist.android.application.asProvider().get().pluginId
             implementationClass = "AndroidApplicationConventionPlugin"
         }
         register("androidApplicationCompose") {
-            id = "gaanaartist.android.application.compose"
+            id = libs.plugins.gaanaartist.android.application.compose.get().pluginId
             implementationClass = "AndroidApplicationComposeConventionPlugin"
+        }
+
+        register("jvmLibrary") {
+            id = libs.plugins.gaanaartist.jvm.library.get().pluginId
+            implementationClass = "JvmLibraryConventionPlugin"
+        }
+
+        register("androidLint") {
+            id = libs.plugins.gaanaartist.android.lint.get().pluginId
+            implementationClass = "AndroidLintConventionPlugin"
         }
     }
 }
