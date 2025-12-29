@@ -59,8 +59,13 @@ gradlePlugin {
         }
 
         register("androidLibrary") {
-            id = libs.plugins.gaanaartist.android.library.get().pluginId
+            id = libs.plugins.gaanaartist.android.library.asProvider().get().pluginId
             implementationClass = "AndroidLibraryConventionPlugin"
+        }
+
+        register("androidLibraryCompose") {
+            id = libs.plugins.gaanaartist.android.library.compose.get().pluginId
+            implementationClass = "AndroidLibraryComposeConventionPlugin"
         }
 
         register("jvmLibrary") {
