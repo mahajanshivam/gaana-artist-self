@@ -82,5 +82,15 @@ gradlePlugin {
             id = libs.plugins.gaanaartist.hilt.get().pluginId
             implementationClass = "HiltConventionPlugin"
         }
+
+        register("androidFeatureImpl") {
+            id = libs.plugins.gaanaartist.android.feature.impl.get().pluginId
+            implementationClass = "AndroidFeatureImplConventionPlugin"
+        }
+
+        register("androidFeatureApi") {
+            id = libs.plugins.gaanaartist.android.feature.api.get().pluginId
+            implementationClass = "AndroidFeatureApiConventionPlugin"
+        }
     }
 }
