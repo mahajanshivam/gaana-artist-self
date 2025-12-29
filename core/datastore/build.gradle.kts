@@ -1,11 +1,10 @@
 plugins {
     alias(libs.plugins.gaanaartist.android.library)
     alias(libs.plugins.gaanaartist.hilt)
-//    id("kotlinx-serialization")
 }
 
 android {
-    namespace = "com.shivam.gaanaartist.core.data"
+    namespace = "com.shivam.gaanaartist.core.datastore"
 }
 
 dependencies {

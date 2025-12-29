@@ -4,6 +4,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     `kotlin-dsl`
+//    alias(libs.plugins.android.lint)
 }
 
 group = "com.shivam.gaanaartist.buildlogic"
@@ -70,6 +71,11 @@ gradlePlugin {
         register("androidLint") {
             id = libs.plugins.gaanaartist.android.lint.get().pluginId
             implementationClass = "AndroidLintConventionPlugin"
+        }
+
+        register("hilt") {
+            id = libs.plugins.gaanaartist.hilt.get().pluginId
+            implementationClass = "HiltConventionPlugin"
         }
     }
 }
