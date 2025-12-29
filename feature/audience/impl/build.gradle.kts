@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.shivam.gaanaartist.feature.music.impl"
+    namespace = "com.shivam.gaanaartist.feature.audience.impl"
 }
 
 dependencies {
