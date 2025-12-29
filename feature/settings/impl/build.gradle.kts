@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.shivam.gaanaartist.feature.profile.impl"
+    namespace = "com.shivam.gaanaartist.feature.settings.impl"
 }
 
 dependencies {
