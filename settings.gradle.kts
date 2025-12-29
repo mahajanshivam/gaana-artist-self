@@ -28,3 +28,4 @@ rootProject.name = "GaanaArtistSelf"
 include(":app")
 include(":core:common")
 include(":core:model")
+include(":core:data")

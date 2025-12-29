@@ -1,4 +1,6 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     `kotlin-dsl`
@@ -17,11 +19,11 @@ kotlin {
     }
 }
 
-//tasks.withType<KotlinCompile>().configureEach {
-//    kotlinOptions {
-//        jvmTarget = "17"
-//    }
-//}
+tasks.withType<KotlinCompile>() {
+    compilerOptions {
+        languageVersion.set(KotlinVersion.KOTLIN_2_1)
+    }
+}
 
 dependencies {
     // Add dependencies required for writing your plugins
@@ -53,6 +55,11 @@ gradlePlugin {
         register("androidApplicationCompose") {
             id = libs.plugins.gaanaartist.android.application.compose.get().pluginId
             implementationClass = "AndroidApplicationComposeConventionPlugin"
+        }
+
+        register("androidLibrary") {
+            id = libs.plugins.gaanaartist.android.library.get().pluginId
+            implementationClass = "AndroidLibraryConventionPlugin"
         }
 
         register("jvmLibrary") {
