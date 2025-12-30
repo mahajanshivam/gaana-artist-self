@@ -4,46 +4,61 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.shivam.gaanaartist.ui.theme.GaanaArtistSelfTheme
+import androidx.activity.viewModels
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import com.shivam.gaanaartist.core.data.repository.MainDataRepository
+import com.shivam.gaanaartist.core.data.repository.NetworkMonitor
+import com.shivam.gaanaartist.core.designsystem.theme.GaanaArtistSelfTheme
+import com.shivam.gaanaartist.ui.GaanaArtistApp
+import com.shivam.gaanaartist.ui.rememberGaanaArtistAppState
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var networkMonitor: NetworkMonitor
+
+    @Inject
+    lateinit var mainDataRepository: MainDataRepository
+
+    private val viewModel: MainActivityViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)
+
         enableEdgeToEdge()
-        setContent {
-            GaanaArtistSelfTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.uiState.collect { uiState ->
+                    // remove if not required
                 }
             }
         }
 
+        setContent {
 
-    }
-}
+            val appState = rememberGaanaArtistAppState(
+                networkMonitor = networkMonitor,
+                mainDataRepository = mainDataRepository
+            )
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+            CompositionLocalProvider(
+//                LocalAnalyticsHelper provides analyticsHelper,
+            ) {
+                GaanaArtistSelfTheme {
+                    GaanaArtistApp(appState)
+                }
+            }
+        }
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    GaanaArtistSelfTheme {
-        Greeting("Android")
     }
 }

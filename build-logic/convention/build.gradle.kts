@@ -92,5 +92,10 @@ gradlePlugin {
             id = libs.plugins.gaanaartist.android.feature.api.get().pluginId
             implementationClass = "AndroidFeatureApiConventionPlugin"
         }
+
+        register("androidFlavors") {
+            id = libs.plugins.gaanaartist.android.application.flavors.get().pluginId
+            implementationClass = "AndroidApplicationFlavorsConventionPlugin"
+        }
     }
 }

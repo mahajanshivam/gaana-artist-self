@@ -1,6 +1,11 @@
-package com.shivam.gaanaartist.ui.theme
+package com.shivam.gaanaartist.core.designsystem.theme
 
 import androidx.compose.ui.graphics.Color
+
+
+val MainBackgroundColor = Color(0xFF0A0A0A)
+val PurplePrimaryColor = Color(0xFF483796)
+val NavigationSuiteContainerColor = Color(0xFF181818)
 
 val Purple80 = Color(0xFFD0BCFF)
 val PurpleGrey80 = Color(0xFFCCC2DC)

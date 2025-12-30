@@ -1,4 +1,4 @@
-package com.shivam.gaanaartist.ui.theme
+package com.shivam.gaanaartist.core.designsystem.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

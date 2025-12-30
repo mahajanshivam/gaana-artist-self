@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.gaanaartist.android.application)
     alias(libs.plugins.gaanaartist.android.application.compose)
+    alias(libs.plugins.gaanaartist.android.application.flavors)
+    alias(libs.plugins.gaanaartist.hilt)
 }
 
 android {
@@ -37,6 +39,7 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.material3.adaptive)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -47,4 +50,17 @@ dependencies {
 
     implementation(projects.core.model)
     implementation(projects.core.common)
+    implementation(projects.core.data)
+    implementation(projects.core.navigation)
+    implementation(projects.core.designsystem)
+
+    implementation(projects.feature.home.api)
+    implementation(projects.feature.music.api)
+    implementation(projects.feature.audience.api)
+    implementation(projects.feature.canvas.api)
+    implementation(projects.feature.profile.api)
+    implementation(projects.feature.settings.api)
+
+    implementation(libs.androidx.core.splashscreen)
+
 }
