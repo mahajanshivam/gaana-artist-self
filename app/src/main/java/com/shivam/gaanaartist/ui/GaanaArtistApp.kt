@@ -1,5 +1,6 @@
 package com.shivam.gaanaartist.ui
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.WindowInsetsSides
@@ -33,14 +34,23 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.testTagsAsResourceId
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation3.runtime.entryProvider
+import androidx.navigation3.ui.NavDisplay
 import com.shivam.gaanaartist.LocalSnackbarHostState
 import com.shivam.gaanaartist.R
 import com.shivam.gaanaartist.core.designsystem.component.GaanaArtistNavigationSuiteScaffold
 import com.shivam.gaanaartist.core.designsystem.component.GaanaArtistTopAppBar
 import com.shivam.gaanaartist.core.navigation.Navigator
+import com.shivam.gaanaartist.core.navigation.toEntries
+import com.shivam.gaanaartist.feature.audience.impl.navigation.audienceEntry
+import com.shivam.gaanaartist.feature.canvas.impl.navigation.canvasEntry
+import com.shivam.gaanaartist.feature.home.impl.navigation.homeEntry
+import com.shivam.gaanaartist.feature.music.impl.navigation.musicEntry
+import com.shivam.gaanaartist.feature.profile.impl.navigation.profileEntry
 import com.shivam.gaanaartist.navigation.TOP_LEVEL_NAV_ITEMS
 import com.shivam.gaanaartist.core.designsystem.R as desSysR
 import com.shivam.gaanaartist.feature.settings.api.R as settingsR
+
 @Composable
 fun GaanaArtistApp(
     appState: GaanaArtistAppState,
@@ -147,7 +157,7 @@ fun GaanaArtistApp(
                             navigationIconContentDescription = stringResource(
                                 id = settingsR.string.feature_settings_api_top_app_bar_action_settings_icon_description,
                             ),
-                            actionIcon =  desSysR.drawable.ic_settings_nav,
+                            actionIcon = desSysR.drawable.ic_settings_nav,
                             actionIconContentDescription = stringResource(
                                 id = settingsR.string.feature_settings_api_top_app_bar_action_settings_icon_description,
                             ),
@@ -156,6 +166,30 @@ fun GaanaArtistApp(
                             ),
 //                            onActionClick = { onTopAppBarActionClick() },
 //                            onNavigationClick = { navigator.navigate(SearchNavKey) },
+                        )
+                    }
+
+                    Box(
+                        modifier = Modifier.consumeWindowInsets(
+                            if (shouldShowTopAppBar) {
+                                WindowInsets.safeDrawing.only(WindowInsetsSides.Top)
+                            } else {
+                                WindowInsets(0, 0, 0, 0)
+                            },
+                        ),
+                    ) {
+                        val entryProvider = entryProvider {
+                            homeEntry(navigator)
+                            musicEntry(navigator)
+                            audienceEntry(navigator)
+                            canvasEntry(navigator)
+                            profileEntry(navigator)
+                        }
+
+                        NavDisplay(
+                            entries = appState.navigationState.toEntries(entryProvider),
+//                            sceneStrategy = listDetailStrategy,
+                            onBack = { navigator.goBack() },
                         )
                     }
 

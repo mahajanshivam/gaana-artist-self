@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.gaanaartist.android.feature.impl)
+    alias(libs.plugins.gaanaartist.android.library.compose)
 }
 
 android {
@@ -13,4 +14,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    implementation(projects.feature.music.api)
+    implementation(projects.core.navigation)
 }

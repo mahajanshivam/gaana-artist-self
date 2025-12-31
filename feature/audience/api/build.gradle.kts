@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.gaanaartist.android.feature.api)
+    alias(libs.plugins.gaanaartist.android.library.compose)
 }
 
 android {
