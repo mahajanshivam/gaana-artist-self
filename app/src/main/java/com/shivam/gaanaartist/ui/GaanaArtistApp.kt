@@ -139,43 +139,41 @@ fun GaanaArtistApp(
                         ),
                 ) {
 
-                    var shouldShowTopAppBar = false
-
-
-                    // TODO:: this shows top app bar only for top level destinations, not inner screens, change later as required
-                    if (appState.navigationState.currentKey in appState.navigationState.topLevelKeys) {
-
-                        shouldShowTopAppBar = true
-
-                        val destination =
-                            TOP_LEVEL_NAV_ITEMS[appState.navigationState.currentTopLevelKey]
-                                ?: error("Top level nav item not found for ${appState.navigationState.currentTopLevelKey}")
-
-                        GaanaArtistTopAppBar(
-                            titleRes = destination.navTitle,
-                            navigationIcon = desSysR.drawable.ic_settings_nav,
-                            navigationIconContentDescription = stringResource(
-                                id = settingsR.string.feature_settings_api_top_app_bar_action_settings_icon_description,
-                            ),
-                            actionIcon = desSysR.drawable.ic_settings_nav,
-                            actionIconContentDescription = stringResource(
-                                id = settingsR.string.feature_settings_api_top_app_bar_action_settings_icon_description,
-                            ),
-                            colors = TopAppBarDefaults.topAppBarColors(
-                                containerColor = Color.Transparent,
-                            ),
-//                            onActionClick = { onTopAppBarActionClick() },
-//                            onNavigationClick = { navigator.navigate(SearchNavKey) },
-                        )
-                    }
+//                    var shouldShowTopAppBar = false
+//                    // TODO:: this shows top app bar only for top level destinations, not inner screens, change later as required
+//                    if (appState.navigationState.currentKey in appState.navigationState.topLevelKeys) {
+//
+//                        shouldShowTopAppBar = true
+//
+//                        val destination =
+//                            TOP_LEVEL_NAV_ITEMS[appState.navigationState.currentTopLevelKey]
+//                                ?: error("Top level nav item not found for ${appState.navigationState.currentTopLevelKey}")
+//
+//                        GaanaArtistTopAppBar(
+//                            titleRes = destination.navTitle,
+//                            navigationIcon = desSysR.drawable.ic_settings_nav,
+//                            navigationIconContentDescription = stringResource(
+//                                id = settingsR.string.feature_settings_api_top_app_bar_action_settings_icon_description,
+//                            ),
+//                            actionIcon = desSysR.drawable.ic_settings_nav,
+//                            actionIconContentDescription = stringResource(
+//                                id = settingsR.string.feature_settings_api_top_app_bar_action_settings_icon_description,
+//                            ),
+//                            colors = TopAppBarDefaults.topAppBarColors(
+//                                containerColor = Color.Transparent,
+//                            ),
+////                            onActionClick = { onTopAppBarActionClick() },
+////                            onNavigationClick = { navigator.navigate(SearchNavKey) },
+//                        )
+//                    }
 
                     Box(
                         modifier = Modifier.consumeWindowInsets(
-                            if (shouldShowTopAppBar) {
-                                WindowInsets.safeDrawing.only(WindowInsetsSides.Top)
-                            } else {
+//                            if (shouldShowTopAppBar) {
+//                                WindowInsets.safeDrawing.only(WindowInsetsSides.Top)
+//                            } else {
                                 WindowInsets(0, 0, 0, 0)
-                            },
+//                            },
                         ),
                     ) {
                         val entryProvider = entryProvider {
