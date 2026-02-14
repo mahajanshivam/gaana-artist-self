@@ -4,6 +4,8 @@ import com.shivam.gaanaartist.core.data.repository.ConnectivityManagerNetworkMon
 import com.shivam.gaanaartist.core.data.repository.FakeMainDataRepository
 import com.shivam.gaanaartist.core.data.repository.MainDataRepository
 import com.shivam.gaanaartist.core.data.repository.NetworkMonitor
+import com.shivam.gaanaartist.core.data.repository.UserDataRepository
+import com.shivam.gaanaartist.core.data.repository.UserDataRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -22,4 +24,9 @@ abstract class DataModule {
     internal abstract fun bindsMainDataRepository(
         repository: FakeMainDataRepository
     ): MainDataRepository
+
+    @Binds
+    internal abstract fun bindsUserDataRepository(
+        userDataRepository: UserDataRepositoryImpl
+    ): UserDataRepository
 }

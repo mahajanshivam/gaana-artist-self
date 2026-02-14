@@ -1,0 +1,14 @@
+
+syntax = "proto3";
+
+option java_package = "com.shivam.gaanaartist.core.datastore";
+option java_multiple_files = true;
+
+message UserPreferences {
+
+    string name = 1;
+    string id = 2;
+    bool isLoggedIn = 3;
+    bool isOnboardingCompleted = 4;
+
+}

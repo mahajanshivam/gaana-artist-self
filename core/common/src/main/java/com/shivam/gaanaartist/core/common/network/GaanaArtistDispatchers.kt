@@ -1,4 +1,4 @@
-package com.shivam.gaanaartist.core.common.di
+package com.shivam.gaanaartist.core.common.network
 
 import javax.inject.Qualifier
 

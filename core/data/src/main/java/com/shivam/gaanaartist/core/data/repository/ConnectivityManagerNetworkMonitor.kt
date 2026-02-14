@@ -24,8 +24,8 @@ import android.net.NetworkCapabilities
 import android.net.NetworkRequest
 import android.net.NetworkRequest.Builder
 import androidx.core.content.getSystemService
-import com.shivam.gaanaartist.core.common.di.Dispatcher
-import com.shivam.gaanaartist.core.common.di.GaanaArtistDispatchers
+import com.shivam.gaanaartist.core.common.network.Dispatcher
+import com.shivam.gaanaartist.core.common.network.GaanaArtistDispatchers
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.channels.awaitClose

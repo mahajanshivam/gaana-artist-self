@@ -67,6 +67,10 @@ dependencies {
     implementation(projects.feature.profile.impl)
     implementation(projects.feature.settings.api)
     implementation(projects.feature.settings.impl)
+    implementation(projects.feature.login.api)
+    implementation(projects.feature.login.impl)
+    implementation(projects.feature.onboarding.api)
+    implementation(projects.feature.onboarding.impl)
 
     implementation(libs.androidx.core.splashscreen)
 

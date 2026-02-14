@@ -1,5 +1,7 @@
 package com.shivam.gaanaartist.core.common.di
 
+import com.shivam.gaanaartist.core.common.network.Dispatcher
+import com.shivam.gaanaartist.core.common.network.GaanaArtistDispatchers
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

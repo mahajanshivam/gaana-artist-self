@@ -1,5 +1,6 @@
 package com.shivam.gaanaartist.feature.home.impl
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -52,6 +53,7 @@ fun HomeSuccessScreen(
     homeUiData: HomeUiModel,
     modifier: Modifier = Modifier
 ) {    // TODO:: think suitable name
+    Log.d("shivam", "HomeSuccessScreen: ")
     Box(
         modifier = modifier
             .background(color = MainBackgroundColor)

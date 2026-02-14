@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.gaanaartist.android.library)
     alias(libs.plugins.gaanaartist.hilt)
-//    id("kotlinx-serialization")
+    id("kotlinx-serialization")
 }
 
 android {
@@ -18,4 +18,5 @@ dependencies {
 
     implementation(projects.core.common)
     implementation(projects.core.model)
+    implementation(projects.core.datastore)
 }
