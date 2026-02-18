@@ -63,7 +63,7 @@ fun GaanaArtistApp(
     val notConnectedMessage = stringResource(R.string.not_connected)
     val snackbarHostState = remember { SnackbarHostState() }
 
-    val navigator = remember { Navigator(appState.navigationState) }
+//    val navigator = remember { Navigator(appState.navigationState) }
 
     LaunchedEffect(isOffline) {
         if (isOffline) {
@@ -78,7 +78,7 @@ fun GaanaArtistApp(
             AppUiState.SHOW_MAIN_SCREEN -> {
                 MainContentNavigationSuiteScaffold(
                     appState = appState,
-                    navigator = navigator,
+//                    navigator = navigator,
                     windowAdaptiveInfo = windowAdaptiveInfo,
                     snackBarHostState = snackbarHostState
                 )
@@ -93,6 +93,7 @@ fun GaanaArtistApp(
 
                 // The root level stack switching can de done in this very when block
                 // on the basis of the value of AppUiState
+
                 Column {
                     Text("Login PAGE")
 
@@ -112,9 +113,21 @@ fun GaanaArtistApp(
                 // without things like top level nav keys etc etc.
                 // That stack will have its own navigation destinations belonging only to the login flow
 
+                Text("Onboarding PAGE")
+
+                Button(
+                    onClick = {
+                        // change the login state of the app properly with API and DB calls
+                        appState.appUiState
+                    })
+                { Text("Complete onboarding") }
+
             }
 
-            AppUiState.LOADING -> {}
+            AppUiState.LOADING -> {
+                // this is the initial state, for now we do not show anything
+                // and the splash screen continues to show
+            }
         }
     }
 
@@ -123,11 +136,13 @@ fun GaanaArtistApp(
 @Composable
 fun MainContentNavigationSuiteScaffold(
     appState: GaanaArtistAppState,
-    navigator: Navigator,
+//    navigator: Navigator,
     windowAdaptiveInfo: WindowAdaptiveInfo,
     snackBarHostState: SnackbarHostState
 ) {
     appState.navigationState ?: return
+
+    val navigator = remember { Navigator(appState.navigationState) }
 
     GaanaArtistNavigationSuiteScaffold(
         navigationSuiteItems = {
@@ -247,9 +262,6 @@ fun MainAppContent(
                     audienceEntry(navigator)
                     canvasEntry(navigator)
                     profileEntry(navigator)
-
-                    loginEntry(navigator)
-                    onboardingEntry(navigator)
                 }
 
                 NavDisplay(

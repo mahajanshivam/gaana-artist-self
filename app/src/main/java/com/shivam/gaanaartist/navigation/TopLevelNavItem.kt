@@ -5,7 +5,6 @@ import androidx.annotation.StringRes
 import com.shivam.gaanaartist.feature.audience.api.navigation.AudienceNavKey
 import com.shivam.gaanaartist.feature.canvas.api.navigation.CanvasNavKey
 import com.shivam.gaanaartist.feature.home.api.navigation.HomeNavKey
-import com.shivam.gaanaartist.feature.login.api.LoginNavKey
 import com.shivam.gaanaartist.feature.music.api.navigation.MusicNavKey
 import com.shivam.gaanaartist.feature.profile.api.navigation.ProfileNavKey
 import com.shivam.gaanaartist.feature.audience.api.R as audienceR

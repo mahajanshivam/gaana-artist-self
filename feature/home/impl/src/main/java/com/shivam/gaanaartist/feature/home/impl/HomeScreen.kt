@@ -9,18 +9,20 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.shivam.gaanaartist.core.designsystem.component.ThemePreviews
 import com.shivam.gaanaartist.core.designsystem.theme.MainBackgroundColor
-import com.shivam.gaanaartist.core.model.data.HomeUiModel
 import com.shivam.gaanaartist.core.model.data.HomeScreenTopBarData
+import com.shivam.gaanaartist.core.model.data.HomeUiModel
 import com.shivam.gaanaartist.core.data.R as dataR
 
 @Composable
@@ -29,31 +31,35 @@ fun HomeScreen(
     onClick: () -> Unit,
     homeViewModel: HomeViewModel = hiltViewModel(),
 ) {
-    val homeUiState = homeViewModel.uiState.collectAsStateWithLifecycle()
-    HomeScreen(homeUiState = homeUiState.value, modifier = modifier)
+    val homeUiState by homeViewModel.uiState.collectAsStateWithLifecycle()
+    HomeScreenRoute(homeUiState = homeUiState, modifier = modifier, onClick = onClick)
 }
 
 @Composable
-fun HomeScreen(homeUiState: HomeUiState, modifier: Modifier) {
+fun HomeScreenRoute(homeUiState: HomeUiState, modifier: Modifier, onClick: () -> Unit) {
 
     when (homeUiState) {
 
         is HomeUiState.Loading -> {
             // handle home page loading - show shimmer if required. ask
+            Text(
+                modifier = modifier.fillMaxSize(),
+                textAlign = TextAlign.Center,
+                text = "Loading Home page Data"
+            )
         }
 
         is HomeUiState.Success -> {
-            HomeSuccessScreen(homeUiState.homeUiData)
+            HomeContentScreen(homeUiState.homeUiData)
         }
     }
 }
 
 @Composable
-fun HomeSuccessScreen(
+fun HomeContentScreen(
     homeUiData: HomeUiModel,
     modifier: Modifier = Modifier
 ) {    // TODO:: think suitable name
-    Log.d("shivam", "HomeSuccessScreen: ")
     Box(
         modifier = modifier
             .background(color = MainBackgroundColor)
@@ -88,5 +94,5 @@ fun HomeSuccessScreen(
 @ThemePreviews
 @Composable
 private fun HomeSuccessScreenPreview() {
-    HomeSuccessScreen(homeUiData = HomeUiModel(homeSampleTextRemoveLater = "Preview Text"))
+    HomeContentScreen(homeUiData = HomeUiModel(homeSampleTextRemoveLater = "Preview Text"))
 }

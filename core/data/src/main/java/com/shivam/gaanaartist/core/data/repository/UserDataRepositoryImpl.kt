@@ -19,14 +19,13 @@ class UserDataRepositoryImpl @Inject constructor(
     override val userData: Flow<UserData> = userPreferencesDataSource.userData
 
     override suspend fun getUserData() {
-
     }
 
     override suspend fun setLoginCompleted() {
-
+        userPreferencesDataSource.setLoginCompleted()
     }
 
     override suspend fun setOnboardingCompleted() {
-
+        userPreferencesDataSource.setOnboardingCompleted()
     }
 }
