@@ -27,6 +27,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
@@ -51,6 +52,7 @@ import com.shivam.gaanaartist.feature.music.impl.navigation.musicEntry
 import com.shivam.gaanaartist.feature.onboarding.impl.navigation.onboardingEntry
 import com.shivam.gaanaartist.feature.profile.impl.navigation.profileEntry
 import com.shivam.gaanaartist.navigation.TOP_LEVEL_NAV_ITEMS
+import kotlinx.coroutines.launch
 
 @Composable
 fun GaanaArtistApp(
@@ -62,6 +64,8 @@ fun GaanaArtistApp(
     val isOffline by appState.isOffline.collectAsStateWithLifecycle()
     val notConnectedMessage = stringResource(R.string.not_connected)
     val snackbarHostState = remember { SnackbarHostState() }
+
+    val coroutineScope = rememberCoroutineScope()
 
 //    val navigator = remember { Navigator(appState.navigationState) }
 
@@ -100,7 +104,9 @@ fun GaanaArtistApp(
                     Button(
                         onClick = {
                             // change the login state of the app properly with API and DB calls
-                            appState.appUiState
+                            coroutineScope.launch {
+                                appState.userDataRepository.setLoginCompleted()
+                            }
                         })
                     { Text("Login") }
                 }
@@ -118,7 +124,9 @@ fun GaanaArtistApp(
                 Button(
                     onClick = {
                         // change the login state of the app properly with API and DB calls
-                        appState.appUiState
+                        coroutineScope.launch {
+                            appState.userDataRepository.setOnboardingCompleted()
+                        }
                     })
                 { Text("Complete onboarding") }
 

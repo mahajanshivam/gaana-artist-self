@@ -56,15 +56,15 @@ fun rememberGaanaArtistAppState(
 
 //    NavigationTrackingSideEffect(navigationState)
 
-    val scope = rememberCoroutineScope()
-    LaunchedEffect(Unit) {
-        scope.launch {
-            delay(4000)
-            userDataRepository.setLoginCompleted()
-            delay(5000)
-            userDataRepository.setOnboardingCompleted()
-        }
-    }
+//    val scope = rememberCoroutineScope()
+//    LaunchedEffect(Unit) {
+//        scope.launch {
+//            delay(4000)
+//            userDataRepository.setLoginCompleted()
+//            delay(5000)
+//            userDataRepository.setOnboardingCompleted()
+//        }
+//    }
 
     return remember(
         navigationState,
@@ -87,10 +87,10 @@ fun rememberGaanaArtistAppState(
 class GaanaArtistAppState(
     val navigationState: NavigationState?,
     val appUiState: AppUiState,
-    coroutineScope: CoroutineScope,
-    networkMonitor: NetworkMonitor,
-    mainDataRepository: MainDataRepository,
-    userDataRepository: UserDataRepository
+    val coroutineScope: CoroutineScope,
+    val networkMonitor: NetworkMonitor,
+    val mainDataRepository: MainDataRepository,
+    val userDataRepository: UserDataRepository
 ) {
 
     val isOffline = networkMonitor.isOnline
